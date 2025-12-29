@@ -71,6 +71,29 @@ Data can be obtained from:
 - AIS export datasets:
 - * https://marinecadastre.gov/accessais/api/v1/search/download/?id=176632433230372488&t=47a7942e-ea4a-4de6-abae-94069d5d3764&aoi=844*
 - * https://marinecadastre.gov/accessais/api/v1/search/download/?id=176632433230372488&t=47a7942e-ea4a-4de6-abae-94069d5d3764&aoi=1544
+ 
+If there is any problems width the download or if one wants to analyse another
+timeperiod simply download a new data set from https://coast.noaa.gov/digitalcoast/tools/ais.html
+
+in my analysis ive used the following coordinates and timestamps
+(Inside the port)
+
+From = 2023-12-31
+To = 2024-12-30
+X Min = -93.91080390566599
+Y Min = 29.691019595359222
+X Max = -93.820682878836
+Y Max = 29.74943387941589
+
+and
+
+(Outside the port)
+From = 2023-12-31
+To = 2024-12-30
+X Min = -93.8583564209909
+Y Min = 29.591137142289384
+X Max = -93.77053659974136
+Y Max = 29.6888969407879
 
 
 After downloading, place the files in the same folder as the Import_historic_AIS.py.
