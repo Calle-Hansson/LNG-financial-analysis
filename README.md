@@ -16,7 +16,7 @@ from the US port Sabine Pass is associated with changes in the European TTF gas 
 
 The analysis includes:
 - Data preprocessing and feature engineering
-- Baseline modeling
+- Naive modeling
 - Linear Regression
 - Model evaluation using MAE and RMSE
 - Visualization through a Flask web application
@@ -28,7 +28,7 @@ The analysis includes:
 ### Data Processing
 - Time series alignment between export activity and gas prices
 - Lagged features of TTF prices (1, 7, 14, and 21 days)
-- Comparison against a baseline model
+- Comparison against a naive model
 
 ### Models
 - Linear Regression
