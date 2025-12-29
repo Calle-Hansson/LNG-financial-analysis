@@ -68,8 +68,9 @@ size limitations.
 
 Data can be obtained from:
 
-- AIS export datasets: * https://marinecadastre.gov/accessais/api/v1/search/download/?id=176632433230372488&t=47a7942e-ea4a-4de6-abae-94069d5d3764&aoi=844*
--                      * https://marinecadastre.gov/accessais/api/v1/search/download/?id=176632433230372488&t=47a7942e-ea4a-4de6-abae-94069d5d3764&aoi=1544
+- AIS export datasets:
+- * https://marinecadastre.gov/accessais/api/v1/search/download/?id=176632433230372488&t=47a7942e-ea4a-4de6-abae-94069d5d3764&aoi=844*
+- * https://marinecadastre.gov/accessais/api/v1/search/download/?id=176632433230372488&t=47a7942e-ea4a-4de6-abae-94069d5d3764&aoi=1544
 
 
 After downloading, place the files in the same folder as the Import_historic_AIS.py.
