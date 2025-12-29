@@ -1,0 +1,55 @@
+<!--This is the Html Structure for the Flask site-->
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p>Graph plots incidents of LNG exports from the sabine pass LNG
+     Liquidification facility in Louisiana (USA) and their supposed
+     impact on TTF prices</p>
+    
+    {{ graph_html | safe }}
+    
+    
+    <section>
+        <h2>Project overview </h2>
+        <p>
+        This project set out to explore if there could be a correlation between
+        LNG Exports from the largest LNG terminal in the USA
+        (Sabine pass, Lousiana) and the Dutch TTF price for Natural Gas. 
+        </p>
+        
+        <h3>Conclusion</h3>
+        <p>
+        My methods were unable to find a corelation between the two sets of data.<br>
+        as shown by my mean average error (MAE) being worse than the baseline control<br>
+        and my root mean squared error (rmse) being bigger than my MAE.<br>
+        <br>
+        It is most probably a much more complex relationship between the number<br>
+        of exports and the TTF Price. Such Factors may include: Geopolitics,<br>
+        European LNG storage capability and the ever changing demand<br>
+        of natural gas
+        </p>
+        <h3>Evaluation Data</h3>
+        
+        
+        <p>
+        The model was evaluated using Mean Absolute Error (MAE)<br>
+        and Root Mean Squared Error (RMSE).
+        
+        </p>
+        
+        <ul>
+        
+        <li><strong>Model MAE: </strong>{{mae}}</li>
+        <li><strong>Model RMSE: </strong>{{rmse}}</li>
+        <li><strong>Baseline MAE: </strong>{{baseline_mae}}</li>
+        <li><strong>Baseline RMSE: </strong>{{baseline_rmse}}</li>
+    </section>
+    
+
+</body>
+</html>
