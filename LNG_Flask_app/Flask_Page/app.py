@@ -14,6 +14,10 @@ rmse_model = 1.18
 mae_zero = 0.90
 rmse_zero = 1.10
 
+pred = pd.read_csv("ttf_pred.csv")
+pred["Date"] = pd.to_datetime(pred['Date'])
+pred = pred.set_index("Date").sort_index()
+
 
 #%%
 app = Flask(__name__)
@@ -25,6 +29,7 @@ def index():
     
     df['Date'] = pd.to_datetime(df['Date'])
     df = df.sort_values("Date").set_index("Date")
+    df = df.join(pred, how= "left")
     
     fig = make_subplots(specs=[[{"secondary_y" : True}]])
     fig.add_trace(
@@ -37,7 +42,16 @@ def index():
         secondary_y = False
         
         )
-
+    fig.add_trace(
+        go.Scatter(
+            x = df.index,
+            y = df['TTF_Change_Pred'],
+            mode = "lines",
+            name = "Prediction"
+            
+            ),
+        secondary_y= False
+        )
     fig.add_trace(
         go.Bar(
             x = df.index,

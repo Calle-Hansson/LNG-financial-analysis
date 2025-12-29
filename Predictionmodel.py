@@ -69,7 +69,7 @@ df['TTF_Lag_14'] = df['TTF_High'].shift(14)
 df['TTF_Lag_21'] = df['TTF_High'].shift(21)
 
 
-df['TTF_Change'] = df['TTF_High'].diff()
+
 
 #%%
 
@@ -77,12 +77,14 @@ df['TTF_Change'] = df['TTF_High'].diff()
 the model is then asked to predict the y_pred based on the X_test
 Mean Average Error (MAE) and Root Mean squared Error (RMSE) is then used to evaluate the predictionmodel. '''
 
-model_df = df[['Exports','7d','14d','21d','TTF_Lag_1','TTF_Lag_7','TTF_Lag_14', 'TTF_Lag_21', 'TTF_Change'  ]].dropna()
+model_df = df[['Exports','7d','14d','21d','TTF_Lag_1','TTF_Lag_7','TTF_Lag_14', 'TTF_Lag_21', 'TTF_High'  ]].dropna()
 
 
 
 X = model_df[['Exports','7d','14d','21d','TTF_Lag_1','TTF_Lag_7','TTF_Lag_14', 'TTF_Lag_21'  ]]
-y = model_df['TTF_Change']
+
+
+y = model_df['TTF_High']
 
 
 
@@ -104,14 +106,30 @@ model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
 
+
+
+pred_df = pd.DataFrame({
+    "Date": X_test.index,
+    "TTF_Change_Pred": y_pred
+})
+pred_df.to_csv(r"LNG_Flask_app\Flask_Page\ttf_pred.csv", index=False)
+
+
+
+
+
+'''Evaluation with Mean average error and root mean squared error '''
+y_naive = y_test.shift(1)
+y_naive.iloc[0] = y_train.iloc[-1]
+
 mae_model = mean_absolute_error(y_test,y_pred)
 rmse_model = np.sqrt(mean_squared_error(y_test,y_pred))
 
-mae_zero = mean_absolute_error(y_test, np.zeros_like(y_test))
-rmse_zero = np.sqrt(mean_squared_error(y_test,np.zeros_like(y_test)))
+mae_naive = mean_absolute_error(y_test, y_naive)
+rmse_naive = np.sqrt(mean_squared_error(y_test,y_naive))
 
-print(f"MAE Model {mae_model:.2f}, vs MAE Zero {mae_zero:.2f}")
-print(f"RMSE Model {rmse_model:.2f}, vs RMSE Zero {rmse_zero:.2f}")
+print(f"MAE Model {mae_model:.2f}, vs MAE Naive {mae_naive:.2f}")
+print(f"RMSE Model {rmse_model:.2f}, vs RMSE Naive {rmse_naive:.2f}")
 
 
         
